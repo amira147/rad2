@@ -1,0 +1,44 @@
+
+<ion-view view-title="Scanner">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search" ng-click=""></button>
+    </ion-nav-buttons>
+
+        
+    <ion-content class="has-header student-listing-content">
+        
+        <div class="button-bar custom-tab" ng-show="scannerList.length">
+            <a href="" class="button button-clear" ng-click="activeView = 'history'" ng-class="{'active': activeView == 'history'}">History</a>
+            <!-- <a href="" class="button button-clear" ng-click="activeView = 'scanner'" ng-class="{'active': activeView == 'scanner'}">Scanner</a> -->
+            <a href="" class="button button-clear" ng-click="scanCode()" ng-class="{'active': activeView == 'scanner'}">Scanner</a>
+        </div>
+
+        <div ng-show="activeView == 'history'">
+        <!-- history -->
+        <ion-list ng-if="scannerList.length" class="scans-listing" can-swipe="true">
+                
+            <!-- item-remove-animate  -->
+            <ion-item  class="scan-item" ng-repeat="scan in scannerList | filter: search.string" ui-sref="app.tabs.products.list({filter:'scans', filterId: scan.cat_id})">
+                <p>{{scan.product_name}}</p>
+                <ion-option-button class="button-assertive" ng-click="deleteLesson(classDetails.$id, scan.$id)">Delete</ion-option-button>
+            </ion-item>
+
+        </ion-list>
+            <!-- <ion-list can-swipe="listCanSwipe"> 
+                <ion-item ng-repeat="scan in scannerList" ng-click="" ng-if="">
+                    <h2>{{scan.product_name}}</h2>
+                    <p>{{scan.product_desc}}</p>
+                    <ion-option-button class="button-assertive" ng-click="deleteLesson(classDetails.$id, scan.$id)">Delete</ion-option-button>
+                </ion-item>
+            </ion-list> -->
+        </div>
+
+        <div ng-show="activeView == 'scanner'">
+        scanner
+        </div>
+        
+        
+
+    </ion-content>
+</ion-view>

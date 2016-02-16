@@ -1,0 +1,44 @@
+
+<ion-modal-view class="">
+
+	<ion-content class="padding">
+		<h3 class="title">{{productDetails.product_name}}</h3>
+		<a class="button button-stable icon-up ion-ios-close-outline" ng-click="closeProductDetails()">Close</a>
+
+		<ion-gallery ion-gallery-items="images"></ion-gallery>
+		<!--<p class="subdued">{{masterCntr.lessonDetails.data.description}}</p>
+		
+		<div class="card">
+			<div class="item item-body">
+				<div class="row">
+					<div class="col text-center">
+						<h1><i class="ion-ios-calendar-outline"></i></h1>
+						<h3>{{masterCntr.lessonDetails.data.duration.start | amFromUnix | amDateFormat: 'DD MMMM YYYY, HH:mm'}}</h3>
+					</div>
+					<div class="col text-center">
+						<h1><i class="ion-ios-location"></i></h1>
+						<h3>{{masterCntr.lessonDetails.data.venue}}</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-center"><a class="text-muted">Reschedule</a></div>
+					<div class="col text-center"><a class="text-muted">Route</a></div>
+				</div>
+			</div>
+			<div class="item item-body no-padding">
+				<div class="button-bar">
+					<a class="button button-stable icon-up ion-ios-list-outline" ng-click="masterCntr.lessonDetails.attendance.open(masterCntr.lessonDetails.data.name, masterCntr.lessonDetails.data.id, masterCntr.lessonDetails.data.classId)">Attendance</a>
+					<a class="button button-stable icon-up ion-ios-compose-outline">Notes</a>
+				</div>
+			</div>
+			<div class="item item-body no-padding">
+				<div class="button-bar">
+					<a class="button button-stable icon-up ion-ios-more" ng-click="masterCntr.lessonDetails.actionSheet(masterCntr.lessonDetails.data.name, masterCntr.lessonDetails.data.id, masterCntr.lessonDetails.data.classId)">More</a>
+					<a class="button button-stable icon-up ion-ios-close-outline" ng-click="masterCntr.lessonDetails.pane.close()">Close</a>
+				</div>
+			</div>
+		</div> -->
+	
+	</ion-content>
+
+</ion-modal-view>
