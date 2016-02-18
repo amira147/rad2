@@ -1,4 +1,26 @@
-/* Empty. Add your own CSS if you like */
+@font-face {
+  font-family: 'Dinnext';
+  src: url('fonts/dinnext/DINNextLTPro-Regular.otf') format('opentype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: 'Dinnext';
+  src: url('fonts/dinnext/DINNextLTPro-Light.otf') format('opentype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  font-weight: 300;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #666;
+}
+/* ionic.css overwrites
+---------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    color: #666;
+}
 
 /* CSS needed for animation
 ---------------------------------------------------- */
@@ -71,6 +93,11 @@
 	font-size: 11px;
 }
 
+.listing-item{
+    white-space: normal;
+    color: #646464;
+}
+
 .listing-item .listing-name{
 	display: block;
 	font-weight: 700;
@@ -82,6 +109,53 @@
 	margin-bottom: 10px;
 }
 
+.listing-img {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+}
 
+.listing-item .no-image {
+    display: block;
+    text-align: center;
+    background-color: #F5F5F5;
+    color: #BEBEBE;
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding-top: 22px;
+}
 
+.bar-rad{
+    background-color: black;
+}
 
+.bar-rad .button{background-color:transparent;}
+
+.bar-rad .ion{
+    color:white;    
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.product_default_img {
+    height: 180px !important;
+    display: block;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70%;
+    margin: 5px auto 10px;
+    float: none;
+}
+
+.item-detail-wrapper{
+    
+}
+
+.item-detail-wrapper .item-detail{
+    display: block;
+}
+
+.item-detail-wrapper .item-detail .title{
+    font-weight: bold;
+}

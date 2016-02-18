@@ -117,37 +117,50 @@ function dbFactory($q, $http, USER_ROLES_CONST) {
 		return deferred.promise;
 	}
 
+	factory.getFavoritesArray = function(user_id){
+		var deferred = $q.defer();
+
+		$http.get('http://app.rad.net.my/rad/c/admin/favorites/ajax_get_favorites/'+user_id)
+	
+		.success(function(data, status, headers, config) {
+			if(data.length){
+				deferred.resolve(data);
+
+			} else {
+				deferred.resolve([]);
+			}
+	    })
+	    .error(function(data, status, headers, config) {
+			deferred.reject(error);
+	    });
+		
+		return deferred.promise;
+
+	}
+
 	factory.getFavoritesListing = function(user_id){
+		console.log("getFavoritesListing");
 		var deferred = $q.defer();
 
 		factory.getProductsListing("none").then(function(data){
 			var products_array = data;
+			
+			var favorites_array = JSON.parse(localStorage.getItem('rad:favorites'));
+			var filtered_products = [];
 
-			$http.get('http://app.rad.net.my/rad/c/admin/favorites/ajax_get_favorites/'+user_id)
+				_.each(products_array, function(product, index){
+					if(_.contains(favorites_array, product.sys_index)){
+						filtered_products.push(product);
+					}
+
+					if(products_array.length == index+1){
+						deferred.resolve(filtered_products);
+					}
+				})
+
 		
-			.success(function(data, status, headers, config) {
-				if(data.length){
-					var favorites_array = data;
-					var filtered_products = [];
-
-						_.each(products_array, function(product, index){
-							if(_.contains(favorites_array, product.sys_index)){
-								filtered_products.push(product);
-							}
-
-							if(products_array.length == index+1){
-								console.log(123);
-								deferred.resolve(filtered_products);
-							}
-						})
-
-				} else {
-					deferred.resolve([]);
-				}
-		    })
-		    .error(function(data, status, headers, config) {
-				deferred.reject(error);
-		    });
+			deferred.resolve([]);
+			
 		});
 		
 		return deferred.promise;

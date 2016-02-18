@@ -1,5 +1,5 @@
 
-<ion-view view-title="Events">
+<ion-view view-title="Events" ng-init="getEventsListing()">
 
     <ion-nav-buttons side="secondary">
         <button class="button button-icon icon ion-ios-search" ng-click=""></button>
@@ -27,15 +27,25 @@
             <ion-spinner icon="spiral"></ion-spinner><br />
             <span>Students Loading...</span>
         </div> -->
-
-        <ion-list ng-if="eventsList.length" class="categories-listing">
+        <ion-list ng-if="eventsList.length" class="events-listing">
                 
             <!-- item-remove-animate  -->
-            <ion-item  class="event-item" ng-repeat="event in eventsList | filter: search.string">
-                <p>{{event.name}}</p>
+            
+            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="event in eventsList | filter: search.string" ng-click="openProductDetails(event.sys_index)">
+                
+                <div ng-if="event.image_path" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{event.image_path}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
+                <div ng-if="!event.image_path" class="no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>
+
+                <div class="col-xs-9 text-container">
+                    <span class="listing-name">{{event.name}}</span>
+                    <span class="listing-detail" style="margin-bottom:0;">{{event.desc | limitTo: 95}}{{event.desc.length > 95 ? '...' : ''}}</span>
+                    <span class="listing-date text-muted">{{masterCntr.getHumanDate(event.start_date)}} to {{masterCntr.getHumanDate(event.end_date)}}</span>
+                </div>
+
             </ion-item>
 
         </ion-list>
+
         <!-- <div ng-if="!viewLoading">
 
             <ion-list ng-if="studentsList.length" class="student-listing">  

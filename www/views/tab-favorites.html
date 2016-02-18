@@ -2,13 +2,13 @@
 <ion-view view-title="Favorites" ng-init="getFavoritesListing()">
 
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-ios-search" ng-click=""></button>
+        <button class="button button-icon icon ion-ios-search" ng-click="toggleSearch()"></button>
     </ion-nav-buttons>
 
         
     <ion-content class="has-header student-listing-content">
         
-        <!-- <div class="bar bar-header item-input-inset list-search" ng-show="search.show">
+        <div class="bar bar-header item-input-inset list-search" ng-show="search.show">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
                 <input type="search"
@@ -21,7 +21,7 @@
             <button ng-show="search.string.length" class="button icon ion-ios-close-empty button-clear" ng-click="clearSearch()"> </button>
         </div>
 
-        <ion-refresher on-refresh="getListing(true)"></ion-refresher>
+        <!-- <ion-refresher on-refresh="getListing(true)"></ion-refresher>
 
         <div ng-if="viewLoading" class="viewLoading padding">
             <ion-spinner icon="spiral"></ion-spinner><br />
@@ -31,8 +31,12 @@
         <ion-list ng-if="favoritesList.length" class="favorites-listing">
                 
             <!-- item-remove-animate  -->
-            <ion-item  class="favorite-item" ng-repeat="favorite in favoritesList | filter: search.string" ui-sref="app.tabs.products.list({filter:'favorites', filterId: favorite.cat_id})">
-                <p>{{favorite.product_name}}</p>
+            <ion-item  class="listing-item" ng-repeat="favorite in favoritesList | filter: search.string" ng-click="openProductDetails(favorite.sys_index)">
+                <img ng-repeat="image in favorite.images" ng-if="isDefault(image.default_img)" class="thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" />
+                <div class="col-xs-9 text-container">
+                    <span class="listing-name">{{favorite.product_name}}</span>
+                    <span class="listing-detail">{{favorite.product_desc | limitTo: 95}}{{favorite.product_desc.length > 95 ? '...' : ''}}</span>
+                </div>
             </ion-item>
 
         </ion-list>

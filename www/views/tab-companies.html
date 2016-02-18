@@ -1,14 +1,14 @@
 
-<ion-view view-title="Companies">
+<ion-view view-title="Companies" ng-init="getCompaniesListing()">
 
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-ios-search" ng-click=""></button>
+        <button class="button button-icon icon ion-ios-search" ng-click="toggleSearch()"></button>
     </ion-nav-buttons>
 
         
-    <ion-content class="has-header student-listing-content">
+    <ion-content class="has-header">
         
-        <!-- <div class="bar bar-header item-input-inset list-search" ng-show="search.show">
+        <div class="bar bar-header item-input-inset list-search" ng-show="search.show">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
                 <input type="search"
@@ -21,21 +21,31 @@
             <button ng-show="search.string.length" class="button icon ion-ios-close-empty button-clear" ng-click="clearSearch()"> </button>
         </div>
 
-        <ion-refresher on-refresh="getListing(true)"></ion-refresher>
+        <!-- <ion-refresher on-refresh="getListing(true)"></ion-refresher>
 
         <div ng-if="viewLoading" class="viewLoading padding">
             <ion-spinner icon="spiral"></ion-spinner><br />
             <span>Students Loading...</span>
         </div> -->
-
-        <ion-list ng-if="companiesList.length" class="categories-listing">
+        <ion-list ng-if="companiesList.length" class="companies-listing">
                 
             <!-- item-remove-animate  -->
-            <ion-item  class="company-item" ng-repeat="company in companiesList | filter: search.string" ui-sref="app.tabs.products.list({filter:'companies', filterId: company.sys_index})">
-                <p>{{company.company_name}}</p>
+            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="company in companiesList | filter: search.string" ng-click="openCompanyDetails(company.sys_index)">
+                
+                <div ng-if="company.image_name" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{company.image_name}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
+                <div ng-if="!company.image_name" class="listing-img no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>
+
+                <div class="col-xs-9 text-container">
+                    <span class="listing-name">{{company.company_name}}</span>
+                    <span class="listing-detail">{{company.company_desc | limitTo: 95}}{{company.company_desc.length > 95 ? '...' : ''}}</span>
+                </div>
             </ion-item>
 
         </ion-list>
+
+        <div ng-if="!companiesList.length" class="center-block">
+            No results found 
+        </div>
         <!-- <div ng-if="!viewLoading">
 
             <ion-list ng-if="studentsList.length" class="student-listing">  

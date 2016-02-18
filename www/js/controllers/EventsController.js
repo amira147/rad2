@@ -10,7 +10,6 @@ angular.module('rad.eventsController', [])
     });
 
   }
-  
-  $scope.getEventsListing();
+
 
 });

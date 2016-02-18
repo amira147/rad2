@@ -7,9 +7,11 @@
 angular.module('rad', [
   'ionic',
   'ion-gallery',
+  'angular-toArrayFilter',
   'ngCordova',
   'rad.dbFactory',
   'rad.controllers',
+  'rad.masterController',
   'rad.productsController',
   'rad.brandsController',
   'rad.categoriesController',

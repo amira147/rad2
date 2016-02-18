@@ -1,25 +1,86 @@
 angular.module('rad.productsController', [])
 
-.controller('ProductsController', function($scope, $state, $stateParams, $ionicModal, $ionicPopup, $timeout, dbFactory) {
+.controller('ProductsController', function($scope, $state, $stateParams, $ionicModal, $ionicPopup, $ionicScrollDelegate, $http, $httpParamSerializerJQLike, dbFactory) {
 
   	var filter = $stateParams.filter; 
   	var filterId = $stateParams.filterId;
-
+  	$scope.search         = {};
+    $scope.search.show    = false;
+    $scope.search.focused = false;
+    $scope.search.string  = '';
   	$scope.images = [];
+
+	$scope.scrollTop = function() {
+	    $ionicScrollDelegate.scrollTop();
+	}
+
+
+	$scope.clearSearch = function(){
+	    // console.log($scope.search.string)
+	    $scope.search.string = '';
+	}
+
+
+	$scope.toggleSearch = function(){
+	    $scope.search.show = !$scope.search.show;
+	    $scope.scrollTop();
+	}
+  	
   	dbFactory.getProductsListing("none").then(function(data){
 		$scope.allProducts = data;
   	});
 
-  	console.log($scope.images);
   	$scope.getProductsListing = function(){
-	  	
 	  	dbFactory.getProductsListing(filter, filterId).then(function(resp){
 	    	
 	    	$scope.productsList = resp;
 	  		console.log("Retrieve products by ", filter, " for id ", filterId, resp);
+	  		// console.log(123, resp.length);
 
 	    }, function(error){
 	    });
+
+  	}
+
+  	$scope.toggleBookmarkProduct = function(product_id){
+  		console.log("1 toggleBookmarkProduct", $scope.masterCntr.userFavorites);
+    	
+    	var mode;
+    	var userFavorites = $scope.masterCntr.userFavorites;
+
+    	//add favorite
+		if(!_.contains(userFavorites, product_id)){
+			userFavorites.push(product_id);
+			mode = "add";
+		}
+		
+		// remove favorite
+		else{
+			userFavorites.splice(userFavorites.indexOf(product_id), 1);
+			mode = "remove";
+		}
+
+		var data_obj = {user_id: 12, product_id: product_id};
+		$http({
+		    url: 'http://app.rad.net.my/rad/c/admin/favorites/ajax_'+mode+'_favorite',
+		    method: "POST",
+		    data: $httpParamSerializerJQLike(data_obj),
+		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success(function (data, status, headers, config) {
+           console.log("http post SUCCESS");
+			localStorage.setItem('rad:favorites', JSON.stringify(userFavorites));
+
+			if(mode=="add"){
+				$scope.productDetails.is_bookmarked = true;
+			}
+			else{
+				$scope.productDetails.is_bookmarked = false;
+			}
+
+		  	$scope.getFavoritesListing();
+		}).error(function (data, status, headers, config) {
+           console.log("http post FAIL");
+		});
 
   	}
 
@@ -39,6 +100,12 @@ angular.module('rad.productsController', [])
 
   	}
 
+  	$scope.$on('$stateChangeSuccess', function () {
+	  if($state.current.name == "app.tabs.favorites"){
+	  	$scope.getFavoritesListing();
+	  }
+	});
+
   	$ionicModal.fromTemplateUrl('views/modal-product-details.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -47,7 +114,10 @@ angular.module('rad.productsController', [])
     });
 
     $scope.openProductDetails = function(product_id){
+    	var userFavorites = $scope.masterCntr.userFavorites;
+
     	$scope.productDetails = _.find($scope.allProducts, function(product){
+    		product.is_bookmarked = _.contains(userFavorites, product.sys_index);
     		return product.sys_index == product_id;
     	});
 	    

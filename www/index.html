@@ -6,6 +6,8 @@
     <title></title>
 
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-xxs.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-xxs-tn.css" rel="stylesheet">
     <link href="lib/ion-gallery/ion-gallery.css" rel="stylesheet">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -18,6 +20,7 @@
     <!-- <script src="lib/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="lib/underscore/underscore-min.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/toArrayFilter.js"></script>
     <script src="lib/ng-cordova/ng-cordova.js"></script>
     <script src="lib/ion-gallery/ion-gallery.js"></script>
 
@@ -29,6 +32,7 @@
     <script src="js/app-router.js"></script>
     <script src="js/factories/dbFactory.js"></script>
     <script src="js/controllers/controllers.js"></script>
+    <script src="js/controllers/MasterController.js"></script>
     <script src="js/controllers/ProductsController.js"></script>
     <script src="js/controllers/BrandsController.js"></script>
     <script src="js/controllers/CategoriesController.js"></script>
@@ -37,7 +41,7 @@
     <script src="js/controllers/ScannerController.js"></script>
   </head>
 
-  <body ng-app="rad">
+  <body ng-app="rad" ng-controller="MasterController as masterCntr">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

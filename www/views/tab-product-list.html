@@ -2,7 +2,7 @@
 <ion-view view-title="Products" ng-init="getProductsListing()">
 
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-ios-search" ng-click=""></button>
+        <button class="button button-icon icon ion-ios-search" ng-click="toggleSearch()"></button>
     </ion-nav-buttons>
 
         
@@ -31,16 +31,24 @@
                 
             <!-- item-remove-animate  -->
             
-            <ion-item  class="listing-item" ng-repeat="product in productsList | filter: search.string" ng-click="openProductDetails(product.sys_index)">
+            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="product in productsList | filter: search.string" ng-click="openProductDetails(product.sys_index)">
                 
-                <img ng-repeat="image in product.images" ng-if="isDefault(image.default_img)" class="thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" />
+                <!-- <img ng-repeat="image in product.images" ng-if="isDefault(image.default_img)" class="listing-img thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" /> -->
+                <div ng-repeat="image in product.images" ng-if="isDefault(image.default_img)" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{image.img_thumbnail}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
+                <div ng-if="!product.images.length" class="no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>
+
                 <div class="col-xs-9 text-container">
                     <span class="listing-name">{{product.product_name}}</span>
-                    <span class="listing-detail">{{product.product_desc}}</span>
+                    <span class="listing-detail">{{product.product_desc | limitTo: 95}}{{product.product_desc.length > 95 ? '...' : ''}}</span>
                 </div>
+
             </ion-item>
 
         </ion-list>
+
+        <div ng-if="!productsList.length" class="center-block">
+            No results found 
+        </div>
         <!-- <div ng-if="!viewLoading">
 
             <ion-list ng-if="studentsList.length" class="student-listing">  

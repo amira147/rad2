@@ -1,11 +1,42 @@
 
 <ion-modal-view class="">
 
+	<ion-header-bar align-title="center" class="bar bar-header bar-rad">
+		<div class="buttons">
+			
+			<button ng-if="!productDetails.is_bookmarked" class="button" ng-click="toggleBookmarkProduct(productDetails.sys_index)"><i class="ion ion-ios-star-outline"></i></button>
+		
+			<button ng-if="productDetails.is_bookmarked" class="button" ng-click="toggleBookmarkProduct(productDetails.sys_index)"><i class="ion ion-ios-star"></i></button>
+		</div>
+		<div class="title">
+			<img src="img/rad.png" style="height:20px;filter: invert(100%);-webkit-filter: invert(1);margin-top:15px;">
+		</div>
+		<div class="buttons">
+			<button class="button" ng-click="closeProductDetails()"><i class="ion ion-close"></i></button>
+		</div>
+	</ion-header-bar>
+
 	<ion-content class="padding">
 		<h3 class="title">{{productDetails.product_name}}</h3>
-		<a class="button button-stable icon-up ion-ios-close-outline" ng-click="closeProductDetails()">Close</a>
 
-		<ion-gallery ion-gallery-items="images"></ion-gallery>
+		<div ng-repeat="image in productDetails.images" ng-if="isDefault(image.default_img)" class='product_default_img thumbnail center-block' style='height: 180px !important; background-image: url({{image.img_full}});'></div>
+
+		<div class="item-detail-wrapper">
+			<span class="item-detail"><strong>Brand:</strong> {{productDetails.brand.brand_name}}</span>
+			<span class="item-detail"><strong>Sold by:</strong> getCompanyName(productDetails.company_id)</span>
+			<span class="item-detail">{{productDetails.product_desc}}</span>
+			
+			<ion-list ng-if="producDetails.type.properties.length">
+                
+	            <!-- item-remove-animate  -->
+	            <ion-item  class="item-detail properties" ng-repeat="property in producDetails.type.properties">
+	                <span class="item-detail">{{property.type}}</span>
+	                <span class="item-detail">{{property.value}}</span>
+	            </ion-item>
+
+	        </ion-list>
+		</div>
+		<!-- <ion-gallery ion-gallery-items="images"></ion-gallery> -->
 		<!--<p class="subdued">{{masterCntr.lessonDetails.data.description}}</p>
 		
 		<div class="card">
