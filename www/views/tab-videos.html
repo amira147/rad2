@@ -1,12 +1,12 @@
 
-<ion-view view-title="Events" ng-init="getEventsListing()">
+<ion-view view-title="Videos" ng-init="">
 
     <ion-nav-buttons side="secondary">
         <button class="button button-icon icon ion-ios-search" ng-click=""></button>
     </ion-nav-buttons>
 
         
-    <ion-content class="has-header student-listing-content">
+    <ion-content class="has-header">
         
         <!-- <div class="bar bar-header item-input-inset list-search" ng-show="search.show">
             <label class="item-input-wrapper">
@@ -27,24 +27,7 @@
             <ion-spinner icon="spiral"></ion-spinner><br />
             <span>Students Loading...</span>
         </div> -->
-        <ion-list ng-if="eventsList.length" class="events-listing">
-                
-            <!-- item-remove-animate  -->
-            
-            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="event in eventsList | filter: search.string" ng-click="openProductDetails(event.sys_index)">
-                
-                <div ng-if="event.image_path" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{event.image_path}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
-                <div ng-if="!event.image_path" class="no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>
-
-                <div class="col-xs-9 text-container">
-                    <span class="listing-name">{{event.name}}</span>
-                    <span class="listing-detail" style="margin-bottom:0;">{{event.desc | limitTo: 95}}{{event.desc.length > 95 ? '...' : ''}}</span>
-                    <span class="listing-date text-muted">{{masterCtrl.getHumanDate(event.start_date)}} to {{masterCtrl.getHumanDate(event.end_date)}}</span>
-                </div>
-
-            </ion-item>
-
-        </ion-list>
+        <p>Videos</p>
 
         <!-- <div ng-if="!viewLoading">
 

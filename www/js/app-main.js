@@ -12,6 +12,7 @@ angular.module('rad', [
   'rad.dbFactory',
   'rad.controllers',
   'rad.masterController',
+  'rad.loginController',
   'rad.productsController',
   'rad.brandsController',
   'rad.categoriesController',
@@ -94,3 +95,4 @@ angular
     '10': 'admin_role',
     '20': 'user_role'
   });
+

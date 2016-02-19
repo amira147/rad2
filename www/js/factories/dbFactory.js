@@ -51,6 +51,7 @@ function dbFactory($q, $http, USER_ROLES_CONST) {
 		
 		.success(function(data, status, headers, config) {
 			if(data.length){
+				// console.log(data);
 				deferred.resolve(data);
 			} else {
 				deferred.resolve([]);
@@ -59,6 +60,20 @@ function dbFactory($q, $http, USER_ROLES_CONST) {
 	    .error(function(data, status, headers, config) {
 			deferred.reject(error);
 	    });
+		
+		return deferred.promise;
+	}
+
+	factory.getCompanyById = function(company_id){
+		var deferred = $q.defer();
+
+		factory.getCompaniesListing().then(function(data){
+			var company_array = data;
+			var company_obj = _.find(company_array, function(company){
+					return company.sys_index == company_id;
+			});
+			deferred.resolve(company_obj);
+		})
 		
 		return deferred.promise;
 	}

@@ -1,11 +1,10 @@
 angular.module('rad.masterController', [])
 
-.controller('MasterController', function($scope, $state, $stateParams, dbFactory) {
+.controller('MasterController', function($scope, $state, $stateParams, $ionicModal, dbFactory) {
   $this = this;
   $this.userFavorites = [];
 
   $this.setFavoriteProducts = function(user_id){
-    console.log("MasterController setFavoriteProducts");
 
     dbFactory.getFavoritesArray(user_id).then(function(resp){
         
@@ -16,9 +15,22 @@ angular.module('rad.masterController', [])
     }, function(error){
     });
   }
+  
+  $this.login = function(){
+    $ionicModal.fromTemplateUrl('views/modal-login.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+    });
+  }
+
+  $this.closeLogin = function(){
+    $scope.modal.hide();
+  }
 
   $this.setCurrentUser = function(){
-    console.log("MasterController setCurrentUser");
     $this.setFavoriteProducts(12);
   }
   

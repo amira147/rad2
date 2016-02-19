@@ -96,6 +96,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .listing-item{
     white-space: normal;
     color: #646464;
+    font: inherit;
 }
 
 .listing-item .listing-name{
@@ -158,4 +159,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 .item-detail-wrapper .item-detail .title{
     font-weight: bold;
+}
+
+.item-detail-wrapper .item-detail.description{
+    padding-top:10px;
+}
+
+.product-properties-list .title{
+    text-transform: uppercase;
+}
+
+.product-properties-list .description{
+    padding-left:10px;
+}
+.product-properties-list .item{
+    white-space: normal;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding-left: 0;
 }

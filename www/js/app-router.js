@@ -12,7 +12,7 @@ function RouterConfigurations ($stateProvider, $urlRouterProvider, USER_ROLES_CO
       .state('app', {
 	    url: '/app',
 	    abstract: true,
-	    templateUrl: 'views/menu.html'
+	    templateUrl: 'views/app-menu.html'
 	  })
 
 	  .state('app.search', {
@@ -141,6 +141,15 @@ function RouterConfigurations ($stateProvider, $urlRouterProvider, USER_ROLES_CO
             'tab-scanner': {
                 templateUrl: 'views/tab-scanner.html',
                 controller: 'ScannerController'
+            }
+        }
+    })
+
+    .state('app.tabs.videos', {
+        url: '/videos',
+        views: {
+            'tab-videos': {
+                templateUrl: 'views/tab-videos.html'
             }
         }
     })

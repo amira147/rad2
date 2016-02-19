@@ -43,10 +43,10 @@ angular.module('rad.productsController', [])
   	}
 
   	$scope.toggleBookmarkProduct = function(product_id){
-  		console.log("1 toggleBookmarkProduct", $scope.masterCntr.userFavorites);
+  		console.log("1 toggleBookmarkProduct", $scope.masterCtrl.userFavorites);
     	
     	var mode;
-    	var userFavorites = $scope.masterCntr.userFavorites;
+    	var userFavorites = $scope.masterCtrl.userFavorites;
 
     	//add favorite
 		if(!_.contains(userFavorites, product_id)){
@@ -114,10 +114,11 @@ angular.module('rad.productsController', [])
     });
 
     $scope.openProductDetails = function(product_id){
-    	var userFavorites = $scope.masterCntr.userFavorites;
+    	var userFavorites = $scope.masterCtrl.userFavorites;
 
     	$scope.productDetails = _.find($scope.allProducts, function(product){
     		product.is_bookmarked = _.contains(userFavorites, product.sys_index);
+    		
     		return product.sys_index == product_id;
     	});
 	    
@@ -129,12 +130,26 @@ angular.module('rad.productsController', [])
 			return obj;
 		});
 
-		console.log("openProductDetails", $scope.productDetails);
+		// console.log("openProductDetails", $scope.productDetails);
 		$scope.modal.show();
     }
 
     $scope.closeProductDetails = function(){
         $scope.modal.hide();
     }
+
+    // $scope.getCompanyName = function(company_id){
+
+    // 	dbFactory.getCompanyById(company_id).then(function(data){
+    // 		return data.company_name;
+    // 	});
+    // }
  
-});
+})
+
+
+.filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+});;

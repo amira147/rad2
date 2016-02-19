@@ -19,7 +19,10 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close ui-sref="app.tabs">
+          Home
+        </ion-item>
+        <ion-item menu-close ng-click="masterCtrl.login()">
           Login
         </ion-item>
 <!--         <ion-item menu-close href="#/app/search">

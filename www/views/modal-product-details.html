@@ -23,52 +23,20 @@
 
 		<div class="item-detail-wrapper">
 			<span class="item-detail"><strong>Brand:</strong> {{productDetails.brand.brand_name}}</span>
-			<span class="item-detail"><strong>Sold by:</strong> getCompanyName(productDetails.company_id)</span>
-			<span class="item-detail">{{productDetails.product_desc}}</span>
+			<span class="item-detail"><strong>Sold by:</strong> {{productDetails.company_name}}</span>
+			<span class="item-detail description">{{productDetails.product_desc}}</span>
 			
-			<ion-list ng-if="producDetails.type.properties.length">
+			<ion-list ng-if="productDetails.type.properties.length" class="product-properties-list">
                 
 	            <!-- item-remove-animate  -->
-	            <ion-item  class="item-detail properties" ng-repeat="property in producDetails.type.properties">
-	                <span class="item-detail">{{property.type}}</span>
-	                <span class="item-detail">{{property.value}}</span>
+	            <ion-item  class="item-detail" ng-repeat="property in productDetails.type.properties">
+	                <span class="item-detail title">{{property.type}}</span>
+	                <span class="item-detail description" ng-bind-html="property.value | unsafe"></span>
 	            </ion-item>
 
 	        </ion-list>
 		</div>
 		<!-- <ion-gallery ion-gallery-items="images"></ion-gallery> -->
-		<!--<p class="subdued">{{masterCntr.lessonDetails.data.description}}</p>
-		
-		<div class="card">
-			<div class="item item-body">
-				<div class="row">
-					<div class="col text-center">
-						<h1><i class="ion-ios-calendar-outline"></i></h1>
-						<h3>{{masterCntr.lessonDetails.data.duration.start | amFromUnix | amDateFormat: 'DD MMMM YYYY, HH:mm'}}</h3>
-					</div>
-					<div class="col text-center">
-						<h1><i class="ion-ios-location"></i></h1>
-						<h3>{{masterCntr.lessonDetails.data.venue}}</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col text-center"><a class="text-muted">Reschedule</a></div>
-					<div class="col text-center"><a class="text-muted">Route</a></div>
-				</div>
-			</div>
-			<div class="item item-body no-padding">
-				<div class="button-bar">
-					<a class="button button-stable icon-up ion-ios-list-outline" ng-click="masterCntr.lessonDetails.attendance.open(masterCntr.lessonDetails.data.name, masterCntr.lessonDetails.data.id, masterCntr.lessonDetails.data.classId)">Attendance</a>
-					<a class="button button-stable icon-up ion-ios-compose-outline">Notes</a>
-				</div>
-			</div>
-			<div class="item item-body no-padding">
-				<div class="button-bar">
-					<a class="button button-stable icon-up ion-ios-more" ng-click="masterCntr.lessonDetails.actionSheet(masterCntr.lessonDetails.data.name, masterCntr.lessonDetails.data.id, masterCntr.lessonDetails.data.classId)">More</a>
-					<a class="button button-stable icon-up ion-ios-close-outline" ng-click="masterCntr.lessonDetails.pane.close()">Close</a>
-				</div>
-			</div>
-		</div> -->
 	
 	</ion-content>
 
