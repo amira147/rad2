@@ -16,6 +16,11 @@ angular.module('rad.scannerController', [])
   
   $scope.getScannerListing();
 
+  $scope.openScan = function(){
+    console.log("openScan");
+    $scope.masterCtrl.openProductDetails("301");
+  }
+
   $scope.scanCode = function(){
 
     document.addEventListener("deviceready", function () {
@@ -23,7 +28,7 @@ angular.module('rad.scannerController', [])
       $cordovaBarcodeScanner
         .scan()
         .then(function(result) {
-          alert(JSON.stringify(result));
+          // alert(JSON.stringify(result));
           
           var scanned_url = result.text;
 
@@ -38,10 +43,12 @@ angular.module('rad.scannerController', [])
 
               switch(item_type){
                 case 'product':
-                  alert("launch product details for product_id "+item_id);
+                  // alert("launch product details for product_id "+item_id);
+                  $scope.masterCtrl.openProductDetails(item_id);
+
                   break;
                 case 'company':
-                  alert("launch company details for company_id "+item_id);
+                  // alert("launch company details for company_id "+item_id);
                   break;
               }
 

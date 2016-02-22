@@ -29,10 +29,11 @@
         </div> -->
 
         <ion-list ng-if="favoritesList.length" class="favorites-listing">
+        <!-- <ion-list ng-if="$scope.masterCtrl.isLoggedIn()" class="favorites-listing"> -->
                 
             <!-- item-remove-animate  -->
-            <ion-item  class="listing-item" ng-repeat="favorite in favoritesList | filter: search.string" ng-click="openProductDetails(favorite.sys_index)">
-                <img ng-repeat="image in favorite.images" ng-if="isDefault(image.default_img)" class="thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" />
+            <ion-item  class="listing-item" ng-repeat="favorite in favoritesList | filter: search.string" ng-click="masterCtrl.openProductDetails(favorite.sys_index)">
+                <img ng-repeat="image in favorite.images" ng-if="masterCtrl.isDefault(image.default_img)" class="thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" />
                 <div class="col-xs-9 text-container">
                     <span class="listing-name">{{favorite.product_name}}</span>
                     <span class="listing-detail">{{favorite.product_desc | limitTo: 95}}{{favorite.product_desc.length > 95 ? '...' : ''}}</span>
@@ -40,6 +41,7 @@
             </ion-item>
 
         </ion-list>
+
         <!-- <div ng-if="!viewLoading">
 
             <ion-list ng-if="studentsList.length" class="student-listing">  

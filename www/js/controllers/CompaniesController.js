@@ -11,7 +11,7 @@ angular.module('rad.companiesController', [])
 
 		dbFactory.getCompaniesListing().then(function(resp){
 		  $scope.companiesList = resp;
-
+		  console.log("getCompaniesListing", resp);
 		}, function(error){
 	});
 

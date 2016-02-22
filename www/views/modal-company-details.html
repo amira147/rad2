@@ -1,0 +1,34 @@
+
+<ion-modal-view class="company-details">
+
+	<ion-header-bar align-title="center" class="bar bar-header bar-rad">
+		<div class="title">
+			<img src="img/rad.png" style="height:20px;filter: invert(100%);-webkit-filter: invert(1);margin-top:15px;">
+		</div>
+		<div class="buttons">
+			<button class="button" ng-click="masterCtrl.closeModal()"><i class="ion ion-close"></i></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content class="padding">
+		<h3 class="title">{{companyDetails.company_name}}</h3>
+
+		<div class='default_img thumbnail center-block' style='height: 180px !important; background-image: url({{companyDetails.image_name}});'></div>
+
+		<div class="item-detail-wrapper">
+			<span class="item-detail description">{{companyDetails.company_desc}}</span>
+			
+			<span class="item-detail"><strong>Website:</strong> <a ng-click="masterCtrl.openWebsite(companyDetails.company_website)">{{companyDetails.company_website}}</a></span>
+			
+			<span class="item-detail"><strong>Address</strong> <br/>{{companyDetails.company_address}}</span>
+
+			<span class="item-detail"><strong>Email:</strong> <a href="mail:{{companyDetails.company_email}}">{{companyDetails.company_email}}</a></span>
+
+			<span class="item-detail"><strong>Phone:</strong> <a href="tel:{{companyDetails.company_phone}}">{{companyDetails.company_phone}}</a></span>
+			
+			
+		</div>
+	
+	</ion-content>
+
+</ion-modal-view>

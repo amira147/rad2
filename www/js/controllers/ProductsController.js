@@ -84,19 +84,22 @@ angular.module('rad.productsController', [])
 
   	}
 
-  	$scope.isDefault = function(property){
-  		return property == "true" ? true : false;
-  	}
+  	// $scope.isDefault = function(property){
+  	// 	return property == "true" ? true : false;
+  	// }
 
   	$scope.getFavoritesListing = function(){
-	  	
-	  	dbFactory.getFavoritesListing(12).then(function(resp){
-	    	
-	    	$scope.favoritesList = resp;
-	  		console.log("Retrieve favorite products", resp);
+	
+  		// if($scope.masterCtrl.isLoggedIn()){
 
-	    }, function(error){
-	    });
+		  	dbFactory.getFavoritesListing().then(function(resp){
+		    	
+		    	$scope.favoritesList = resp;
+		  		console.log("Retrieve favorite products", resp);
+
+		    }, function(error){
+		    });
+  		// }
 
   	}
 
@@ -106,37 +109,37 @@ angular.module('rad.productsController', [])
 	  }
 	});
 
-  	$ionicModal.fromTemplateUrl('views/modal-product-details.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+  // 	$ionicModal.fromTemplateUrl('views/modal-product-details.html', {
+  //       scope: $scope,
+  //       animation: 'slide-in-up'
+  //   }).then(function(modal) {
+  //       $scope.modal = modal;
+  //   });
 
-    $scope.openProductDetails = function(product_id){
-    	var userFavorites = $scope.masterCtrl.userFavorites;
+  //   $scope.openProductDetails = function(product_id){
+  //   	var userFavorites = $scope.masterCtrl.userFavorites;
 
-    	$scope.productDetails = _.find($scope.allProducts, function(product){
-    		product.is_bookmarked = _.contains(userFavorites, product.sys_index);
+  //   	$scope.productDetails = _.find($scope.allProducts, function(product){
+  //   		product.is_bookmarked = _.contains(userFavorites, product.sys_index);
     		
-    		return product.sys_index == product_id;
-    	});
+  //   		return product.sys_index == product_id;
+  //   	});
 	    
-	    $scope.images = _.map($scope.productDetails.images, function(img_obj, index){
-			var obj = {
-				src: img_obj.img_full,
-				thumb: img_obj.img_thumbnail
-			}
-			return obj;
-		});
+	 //    $scope.images = _.map($scope.productDetails.images, function(img_obj, index){
+		// 	var obj = {
+		// 		src: img_obj.img_full,
+		// 		thumb: img_obj.img_thumbnail
+		// 	}
+		// 	return obj;
+		// });
 
-		// console.log("openProductDetails", $scope.productDetails);
-		$scope.modal.show();
-    }
+		// // console.log("openProductDetails", $scope.productDetails);
+		// $scope.modal.show();
+  //   }
 
-    $scope.closeProductDetails = function(){
-        $scope.modal.hide();
-    }
+  //   $scope.closeProductDetails = function(){
+  //       $scope.modal.hide();
+  //   }
 
     // $scope.getCompanyName = function(company_id){
 

@@ -15,15 +15,18 @@
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
       <h1 class="title">Rad.</h1>
-
     </ion-header-bar>
     <ion-content>
+      <div ng-if="masterCtrl.user.email" class="item"><i class="icon ion-person"></i>&nbsp;&nbsp;{{masterCtrl.user.email}}</div>
       <ion-list>
         <ion-item menu-close ui-sref="app.tabs">
           Home
         </ion-item>
-        <ion-item menu-close ng-click="masterCtrl.login()">
+        <ion-item menu-close ng-if="!masterCtrl.user.email" ng-click="masterCtrl.login()">
           Login
+        </ion-item>
+        <ion-item menu-close ng-if="masterCtrl.user.email" ng-click="masterCtrl.logout()">
+          Logout
         </ion-item>
 <!--         <ion-item menu-close href="#/app/search">
           Search

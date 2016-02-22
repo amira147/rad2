@@ -1,5 +1,5 @@
 
-<ion-modal-view class="">
+<ion-modal-view class="product-details">
 
 	<ion-header-bar align-title="center" class="bar bar-header bar-rad">
 		<div class="buttons">
@@ -12,14 +12,15 @@
 			<img src="img/rad.png" style="height:20px;filter: invert(100%);-webkit-filter: invert(1);margin-top:15px;">
 		</div>
 		<div class="buttons">
-			<button class="button" ng-click="closeProductDetails()"><i class="ion ion-close"></i></button>
+			<button class="button" ng-click="masterCtrl.closeModal()"><i class="ion ion-close"></i></button>
 		</div>
 	</ion-header-bar>
 
 	<ion-content class="padding">
 		<h3 class="title">{{productDetails.product_name}}</h3>
 
-		<div ng-repeat="image in productDetails.images" ng-if="isDefault(image.default_img)" class='product_default_img thumbnail center-block' style='height: 180px !important; background-image: url({{image.img_full}});'></div>
+		<div ng-repeat="image in productDetails.images" ng-if="masterCtrl.isDefault(image.default_img)" class='default_img thumbnail center-block' style='height: 180px !important; background-image: url({{image.img_full}});'></div>
+		<ion-gallery ion-gallery-items="images"></ion-gallery>
 
 		<div class="item-detail-wrapper">
 			<span class="item-detail"><strong>Brand:</strong> {{productDetails.brand.brand_name}}</span>
@@ -36,7 +37,6 @@
 
 	        </ion-list>
 		</div>
-		<!-- <ion-gallery ion-gallery-items="images"></ion-gallery> -->
 	
 	</ion-content>
 

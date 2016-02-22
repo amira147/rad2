@@ -138,10 +138,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     margin-top: 8px;
 }
 
-.product_default_img {
+.default_img  {
     height: 180px !important;
     display: block;
-    background-size: cover !important;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 70%;
@@ -149,12 +149,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     float: none;
 }
 
+.company-details .default_img {
+    background-size: contain !important;
+}
 .item-detail-wrapper{
     
 }
 
 .item-detail-wrapper .item-detail{
     display: block;
+    padding: 5px 0;
 }
 
 .item-detail-wrapper .item-detail .title{

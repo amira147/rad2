@@ -31,10 +31,10 @@
                 
             <!-- item-remove-animate  -->
             
-            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="product in productsList | filter: search.string" ng-click="openProductDetails(product.sys_index)">
+            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="product in productsList | filter: search.string" ng-click="masterCtrl.openProductDetails(product.sys_index)">
                 
                 <!-- <img ng-repeat="image in product.images" ng-if="isDefault(image.default_img)" class="listing-img thumbnail col-xs-3 col-md-1" src="{{image.img_thumbnail}}" /> -->
-                <div ng-repeat="image in product.images" ng-if="isDefault(image.default_img)" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{image.img_thumbnail}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
+                <div ng-repeat="image in product.images" ng-if="masterCtrl.isDefault(image.default_img)" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{image.img_thumbnail}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
                 <div ng-if="!product.images.length" class="no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>
 
                 <div class="col-xs-9 text-container">

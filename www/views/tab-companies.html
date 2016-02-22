@@ -30,7 +30,7 @@
         <ion-list ng-if="companiesList.length" class="companies-listing">
                 
             <!-- item-remove-animate  -->
-            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="company in companiesList | filter: search.string" ng-click="openCompanyDetails(company.sys_index)">
+            <ion-item class="listing-item col-xxs-12 col-xs-6 col-sm-3 col-md-12" ng-repeat="company in companiesList | filter: search.string" ng-click="masterCtrl.openCompanyDetails(company.sys_index)">
                 
                 <div ng-if="company.image_name" class="listing-img thumbnail col-xs-3 col-md-3" style="background: url({{company.image_name}}) no-repeat; background-size:cover;background-position: 50% 50%;" ></div>
                 <div ng-if="!company.image_name" class="listing-img no-image thumbnail col-xs-3 col-md-1" ><i class="icon ion-image"></i></div>

@@ -153,7 +153,7 @@ function dbFactory($q, $http, USER_ROLES_CONST) {
 
 	}
 
-	factory.getFavoritesListing = function(user_id){
+	factory.getFavoritesListing = function(){
 		console.log("getFavoritesListing");
 		var deferred = $q.defer();
 
